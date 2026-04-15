@@ -26,6 +26,8 @@ void sparse_multiply(
     int* out_nnz, double* values, int* col_indices, int* row_ptrs,
     double* y
 ) {
+
+    //printf("Hola RISC-V!!\n");
     // TODO
 }
 

@@ -1,6 +1,7 @@
 # RV-Sparse: Coding Challenge
 
 ## Challenge
+
 Implement the sparse_multiply function that:
 
 * Scans a row-major matrix A and identifies its non-zero elements.
@@ -8,13 +9,26 @@ Implement the sparse_multiply function that:
 * Computes the matrix-vector product y = A * x using the extracted CSR data.
 * Writes the result directly into a caller-provided output buffer.
 
-Critical Constraint: Your function must perform zero dynamic memory allocation. All memory is pre-allocated by the caller.
-Test Harness
+**Critical Constraint**: Your function must perform zero dynamic memory allocation. All memory is pre-allocated by the caller.
+
+## Test Harness
+
 The function prototype and test harness is given in the file challenge.c which you can find here. The placeholder for the implementation of the function is also given there, marked by the TODO comment.
 
 To test your implementation, execute the following.
 
->>> gcc -lm -o run challenge.c
+```bash
+>>> gcc -o run challenge.c -lm
 >>> ./run
-Submission
+```
+
+## Submission
+
 Host your solution in a public Git repository with brief documentation. Submit a PDF with the link to your Git repository.
+
+## Problem Description
+
+Sparse- Matrix is more efici
+
+
+## 💻 Implementación en C (Explicada)

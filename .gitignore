@@ -1,0 +1,24 @@
+# --- Binarios y Ejecutables ---
+# Bloquea el ejecutable que generamos con gcc
+a.out
+*.exe
+*.out
+*.app
+
+# --- Objetos y Librerías ---
+*.o
+*.a
+*.so
+*.dylib
+
+# --- Archivos de Sistema y Editores ---
+.DS_Store
+Thumbs.db
+*.swp
+*~
+.vscode/
+.idea/
+
+# --- Logs y Temporales ---
+*.log
+*.tmp
