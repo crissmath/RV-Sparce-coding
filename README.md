@@ -28,7 +28,7 @@ Host your solution in a public Git repository with brief documentation. Submit a
 
 ## Problem Description
 
-Sparse- Matrix is more efici
+In real-world applications—ranging from graph analytics and social network modeling to linear programming and large-scale simulations—data is rarely dense. Most coefficients in these massive datasets are zero. Using standard General Matrix Multiply (GEMM) kernels on such data is highly inefficient, as it wastes computational cycles and memory bandwidth processing redundant zero-value operations.
 
 
 ## 💻 Implementación en C (Explicada)
