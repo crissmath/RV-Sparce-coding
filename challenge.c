@@ -26,6 +26,34 @@ void sparse_multiply(
     int* out_nnz, double* values, int* col_indices, int* row_ptrs,
     double* y
 ) {
+    int nnz = 0;
+    row_ptrs[0] = 0; // very important init pointer :')
+
+    // CSR
+    for(int i = 0; i < rows; i++){
+        for(int j = 0; j < cols; j++){
+            double val = A[ i * cols + j];
+
+            if( val != 0.0){
+                values[nnz] = val;
+                col_indices[nnz] = j;
+                nnz++; 
+            }
+        }
+        row_ptrs[ i + 1] = nnz;
+    }
+    *out_nnz = nnz; // GET VALUES
+
+    //  y = A * x 
+    for( int i = 0; i < rows; i++){
+        double row_sum = 0.0;
+        for(int k = 0; k < cols; k ++){
+            row_sum += values[k] * x[col_indices[k]];
+        }
+        y[i] = row_sum;
+    }
+
+
 
     //printf("Hola RISC-V!!\n");
     // TODO
