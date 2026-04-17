@@ -47,17 +47,50 @@ void sparse_multiply(
     //  y = A * x 
     for( int i = 0; i < rows; i++){
         double row_sum = 0.0;
-        for(int k = 0; k < cols; k ++){
+        for(int k = row_ptrs[i]; k < row_ptrs[i + 1]; k ++){
             row_sum += values[k] * x[col_indices[k]];
         }
         y[i] = row_sum;
     }
-
-
-
     //printf("Hola RISC-V!!\n");
     // TODO
 }
+
+void sparse_multiply_op1(
+    int rows, int cols,
+    const double *restrict A,
+    const double *restrict x,
+    int *restrict out_nnz,
+    double *restrict values,
+    int *restrict col_indices,
+    int *restrict row_ptrs,
+    double *restrict y
+) {
+    int nnz = 0;
+    row_ptrs[0] = 0;   // CSR siempre comienza en 0
+
+    for (int i = 0; i < rows; ++i) {
+        double row_sum = 0.0;
+        const double *row = A + i * cols;   // inicio de la fila i en la matriz densa
+
+        for (int j = 0; j < cols; ++j) {
+            double value = row[j];
+
+            if (value != 0.0) {
+                values[nnz] = value;        // guardar valor no nulo
+                col_indices[nnz] = j;       // guardar su columna
+                row_sum += value * x[j];    // acumular producto fila por vector
+                ++nnz;
+            }
+        }
+
+        row_ptrs[i + 1] = nnz;              // fin de la fila i en CSR
+        y[i] = row_sum;                     // resultado de la fila i
+    }
+
+    *out_nnz = nnz;
+}
+
 
 // =========================================================
 // TEST HARNESS
@@ -103,6 +136,8 @@ int main(void) {
         }
 
         sparse_multiply(rows, cols, A, x, &out_nnz, values, col_indices, row_ptrs, y_user);
+        //optimice version fused CRS + dotproduct
+        //sparse_multiply_op1(rows, cols, A, x, &out_nnz, values, col_indices, row_ptrs, y_user);
 
         double max_err = 0.0;
         int passed = 1;
