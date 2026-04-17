@@ -1,4 +1,4 @@
-# RV-Sparse: Optimized CSR Matrix-Vector Multiplication
+# RV-Sparse: CSR Matrix-Vector Multiplication
 
 This repository contains my solution for the **RV-Sparse Coding Challenge**. The project implements a high-performance kernel for Sparse Matrix-Vector Multiplication (SpMV) using the Compressed Sparse Row (CSR) format, specifically designed for systems with strict memory constraints and potential for hardware acceleration.
 
